@@ -64,11 +64,15 @@ keytool -genkeypair -v -keystore signingkey.jks -alias extensions -keyalg RSA -k
 [Convert]::ToBase64String([IO.File]::ReadAllBytes("signingkey.jks")) | Set-Clipboard
 ```
 
-ثم افتح `Actions > Publish extension repository > Run workflow`. سيُنشأ فرع `repo` تلقائيًا. رابط المستودع الذي تضيفه داخل Aniyomi هو:
+ثم افتح `Actions > Publish extension repository > Run workflow`. سيُنشأ فرع `repo` تلقائيًا (لا يظهر إلا بعد أول تشغيل ناجح لهذا الـ workflow). رابط المستودع الذي تضيفه داخل Aniyomi هو:
 
 ```text
-https://raw.githubusercontent.com/USERNAME/REPOSITORY/repo/index.min.json
+https://raw.githubusercontent.com/drnopoh2810-spec/anime-repo/repo/index.min.json
 ```
+
+> ⚠️ **هذا الرابط لا يعمل إلا بعد تنفيذ الخطوات أعلاه فعليًا**: إنشاء مفتاح التوقيع، إضافة الأسرار الأربعة (`SIGNING_KEY`, `ALIAS`, `KEY_STORE_PASSWORD`, `KEY_PASSWORD`) في إعدادات المستودع على GitHub من `Settings > Secrets and variables > Actions`، ثم تشغيل workflow **Publish extension repository** يدويًا من تبويب Actions ونجاحه. حاليًا لا يوجد فرع `repo` في المستودع، أي أن الرابط أعلاه غير فعّال بعد. أما workflow **CI** الذي ينجح تلقائيًا عند كل رفع فهو فقط للتحقق من سلامة البناء بصيغة Debug، ولا ينشئ رابطًا قابلًا للاستيراد داخل التطبيق.
+>
+> بمجرد نجاح **Publish extension repository** لأول مرة، افتح تطبيق Aniyomi ← الإعدادات ← تصفح/الإضافات (Browse/Extensions) ← أضف مستودعًا (Add repo) ← الصق الرابط أعلاه بالضبط.
 
 ## البناء محليًا
 
