@@ -1,0 +1,282 @@
+[
+  {
+    "name": "Aniyomi: Anime4up",
+    "pkg": "eu.kanade.tachiyomi.animeextension.ar.anime4up",
+    "apk": "aniyomi-ar.anime4up-v14.70.apk",
+    "lang": "ar",
+    "code": 70,
+    "version": "14.70",
+    "nsfw": 0,
+    "hasReadme": 0,
+    "hasChangelog": 0,
+    "sources": [
+      {
+        "name": "Anime4Up",
+        "lang": "ar",
+        "id": "528782559387795213",
+        "baseUrl": "https://anime4up.rest",
+        "versionId": 1
+      }
+    ]
+  },
+  {
+    "name": "Aniyomi: Anime Blkom",
+    "pkg": "eu.kanade.tachiyomi.animeextension.ar.animeblkom",
+    "apk": "aniyomi-ar.animeblkom-v14.20.apk",
+    "lang": "ar",
+    "code": 20,
+    "version": "14.20",
+    "nsfw": 0,
+    "hasReadme": 0,
+    "hasChangelog": 0,
+    "sources": [
+      {
+        "name": "أنمي بالكوم",
+        "lang": "ar",
+        "id": "5743347900850233900",
+        "baseUrl": "https://animeblkom.net",
+        "versionId": 1
+      }
+    ]
+  },
+  {
+    "name": "Aniyomi: Animeiat",
+    "pkg": "eu.kanade.tachiyomi.animeextension.ar.animeiat",
+    "apk": "aniyomi-ar.animeiat-v14.1.apk",
+    "lang": "ar",
+    "code": 1,
+    "version": "14.1",
+    "nsfw": 0,
+    "hasReadme": 0,
+    "hasChangelog": 0,
+    "sources": [
+      {
+        "name": "Animeiat",
+        "lang": "ar",
+        "id": "7117595939095792520",
+        "baseUrl": "https://api.animeiat.co/v1",
+        "versionId": 1
+      }
+    ]
+  },
+  {
+    "name": "Aniyomi: AnimeLek",
+    "pkg": "eu.kanade.tachiyomi.animeextension.ar.animelek",
+    "apk": "aniyomi-ar.animelek-v14.33.apk",
+    "lang": "ar",
+    "code": 33,
+    "version": "14.33",
+    "nsfw": 0,
+    "hasReadme": 0,
+    "hasChangelog": 0,
+    "sources": [
+      {
+        "name": "AnimeLek",
+        "lang": "ar",
+        "id": "735529755877348598",
+        "baseUrl": "https://animelek.me",
+        "versionId": 1
+      }
+    ]
+  },
+  {
+    "name": "Aniyomi: Animerco",
+    "pkg": "eu.kanade.tachiyomi.animeextension.ar.animerco",
+    "apk": "aniyomi-ar.animerco-v14.46.apk",
+    "lang": "ar",
+    "code": 46,
+    "version": "14.46",
+    "nsfw": 0,
+    "hasReadme": 0,
+    "hasChangelog": 0,
+    "sources": [
+      {
+        "name": "Animerco",
+        "lang": "ar",
+        "id": "4435835034990361158",
+        "baseUrl": "https://eta.animerco.org",
+        "versionId": 1
+      }
+    ]
+  },
+  {
+    "name": "Aniyomi: ArabAnime",
+    "pkg": "eu.kanade.tachiyomi.animeextension.ar.arabanime",
+    "apk": "aniyomi-ar.arabanime-v14.2.apk",
+    "lang": "ar",
+    "code": 2,
+    "version": "14.2",
+    "nsfw": 0,
+    "hasReadme": 0,
+    "hasChangelog": 0,
+    "sources": [
+      {
+        "name": "ArabAnime",
+        "lang": "ar",
+        "id": "7694781769943581537",
+        "baseUrl": "https://www.arabanime.net",
+        "versionId": 1
+      }
+    ]
+  },
+  {
+    "name": "Aniyomi: Arab Seed",
+    "pkg": "eu.kanade.tachiyomi.animeextension.ar.arabseed",
+    "apk": "aniyomi-ar.arabseed-v14.24.apk",
+    "lang": "ar",
+    "code": 24,
+    "version": "14.24",
+    "nsfw": 0,
+    "hasReadme": 0,
+    "hasChangelog": 0,
+    "sources": [
+      {
+        "name": "عرب سيد",
+        "lang": "ar",
+        "id": "4544379135186887077",
+        "baseUrl": "https://m.asd.homes",
+        "versionId": 1
+      }
+    ]
+  },
+  {
+    "name": "Aniyomi: asia2tv",
+    "pkg": "eu.kanade.tachiyomi.animeextension.ar.asia2tv",
+    "apk": "aniyomi-ar.asia2tv-v14.26.apk",
+    "lang": "ar",
+    "code": 26,
+    "version": "14.26",
+    "nsfw": 0,
+    "hasReadme": 0,
+    "hasChangelog": 0,
+    "sources": [
+      {
+        "name": "Asia2TV",
+        "lang": "ar",
+        "id": "2083042094654392493",
+        "baseUrl": "https://ww1.asia2tv.pw",
+        "versionId": 1
+      }
+    ]
+  },
+  {
+    "name": "Aniyomi: Cimaleek",
+    "pkg": "eu.kanade.tachiyomi.animeextension.ar.cimaleek",
+    "apk": "aniyomi-ar.cimaleek-v14.5.apk",
+    "lang": "ar",
+    "code": 5,
+    "version": "14.5",
+    "nsfw": 0,
+    "hasReadme": 0,
+    "hasChangelog": 0,
+    "sources": [
+      {
+        "name": "سيما ليك",
+        "lang": "ar",
+        "id": "9014633682469494124",
+        "baseUrl": "https://r101.cimalek.buzz",
+        "versionId": 1
+      }
+    ]
+  },
+  {
+    "name": "Aniyomi: Egy Dead",
+    "pkg": "eu.kanade.tachiyomi.animeextension.ar.egydead",
+    "apk": "aniyomi-ar.egydead-v14.21.apk",
+    "lang": "ar",
+    "code": 21,
+    "version": "14.21",
+    "nsfw": 0,
+    "hasReadme": 0,
+    "hasChangelog": 0,
+    "sources": [
+      {
+        "name": "Egy Dead",
+        "lang": "ar",
+        "id": "8402300441936118056",
+        "baseUrl": "https://tv10.egydead.live",
+        "versionId": 1
+      }
+    ]
+  },
+  {
+    "name": "Aniyomi: FASELHD",
+    "pkg": "eu.kanade.tachiyomi.animeextension.ar.faselhd",
+    "apk": "aniyomi-ar.faselhd-v14.19.apk",
+    "lang": "ar",
+    "code": 19,
+    "version": "14.19",
+    "nsfw": 0,
+    "hasReadme": 0,
+    "hasChangelog": 0,
+    "sources": [
+      {
+        "name": "فاصل اعلاني",
+        "lang": "ar",
+        "id": "1378291029586884571",
+        "baseUrl": "https://www.fasel-hd.cam",
+        "versionId": 1
+      }
+    ]
+  },
+  {
+    "name": "Aniyomi: MY CIMA",
+    "pkg": "eu.kanade.tachiyomi.animeextension.ar.mycima",
+    "apk": "aniyomi-ar.mycima-v14.25.apk",
+    "lang": "ar",
+    "code": 25,
+    "version": "14.25",
+    "nsfw": 0,
+    "hasReadme": 0,
+    "hasChangelog": 0,
+    "sources": [
+      {
+        "name": "MY Cima",
+        "lang": "ar",
+        "id": "6019880483003007296",
+        "baseUrl": "https://wecima.show",
+        "versionId": 1
+      }
+    ]
+  },
+  {
+    "name": "Aniyomi: Okanime",
+    "pkg": "eu.kanade.tachiyomi.animeextension.ar.okanime",
+    "apk": "aniyomi-ar.okanime-v14.20.apk",
+    "lang": "ar",
+    "code": 20,
+    "version": "14.20",
+    "nsfw": 0,
+    "hasReadme": 0,
+    "hasChangelog": 0,
+    "sources": [
+      {
+        "name": "Okanime",
+        "lang": "ar",
+        "id": "2275740574829569178",
+        "baseUrl": "https://ww3.okanime.xyz",
+        "versionId": 1
+      }
+    ]
+  },
+  {
+    "name": "Aniyomi: WIT ANIME",
+    "pkg": "eu.kanade.tachiyomi.animeextension.ar.witanime",
+    "apk": "aniyomi-ar.witanime-v14.55.apk",
+    "lang": "ar",
+    "code": 55,
+    "version": "14.55",
+    "nsfw": 0,
+    "hasReadme": 0,
+    "hasChangelog": 0,
+    "sources": [
+      {
+        "name": "WIT ANIME",
+        "lang": "ar",
+        "id": "8940958730943730988",
+        "baseUrl": "https://witanime.xyz",
+        "versionId": 1
+      }
+    ]
+  }
+]
