@@ -64,15 +64,17 @@ keytool -genkeypair -v -keystore signingkey.jks -alias extensions -keyalg RSA -k
 [Convert]::ToBase64String([IO.File]::ReadAllBytes("signingkey.jks")) | Set-Clipboard
 ```
 
-ثم افتح `Actions > Publish extension repository > Run workflow`. سيُنشأ فرع `repo` تلقائيًا (لا يظهر إلا بعد أول تشغيل ناجح لهذا الـ workflow). رابط المستودع الذي تضيفه داخل Aniyomi هو:
+أول مرة فقط، افتح `Actions > Publish extension repository > Run workflow` يدويًا. سيُنشأ فرع `repo` تلقائيًا، ورابط المستودع الذي تضيفه داخل Aniyomi هو:
 
 ```text
 https://raw.githubusercontent.com/drnopoh2810-spec/anime-repo/repo/index.min.json
 ```
 
-> ⚠️ **هذا الرابط لا يعمل إلا بعد تنفيذ الخطوات أعلاه فعليًا**: إنشاء مفتاح التوقيع، إضافة الأسرار الأربعة (`SIGNING_KEY`, `ALIAS`, `KEY_STORE_PASSWORD`, `KEY_PASSWORD`) في إعدادات المستودع على GitHub من `Settings > Secrets and variables > Actions`، ثم تشغيل workflow **Publish extension repository** يدويًا من تبويب Actions ونجاحه. حاليًا لا يوجد فرع `repo` في المستودع، أي أن الرابط أعلاه غير فعّال بعد. أما workflow **CI** الذي ينجح تلقائيًا عند كل رفع فهو فقط للتحقق من سلامة البناء بصيغة Debug، ولا ينشئ رابطًا قابلًا للاستيراد داخل التطبيق.
->
-> بمجرد نجاح **Publish extension repository** لأول مرة، افتح تطبيق Aniyomi ← الإعدادات ← تصفح/الإضافات (Browse/Extensions) ← أضف مستودعًا (Add repo) ← الصق الرابط أعلاه بالضبط.
+هذا الرابط **مُفعّل حاليًا ويعمل** (تم تشغيله وتوقيعه بنجاح، ويضم الإضافات الـ14).
+
+### التحديث التلقائي للرابط
+
+workflow **Publish extension repository** يعمل الآن تلقائيًا أيضًا (بدون تدخل يدوي) في كل مرة يصل فيها تعديل إلى مجلد `src/` على فرع `main` — سواء بدمج Pull Request لموقع جديد (من workflow **Add extension**) أو برفع `extVersionCode` لموقع موجود. أي إضافة أو تحديث جديد يُدمج في `main` سيُبنى ويُوقّع تلقائيًا ويُضاف إلى نفس الرابط أعلاه خلال دقائق، دون الحاجة لتشغيل الـ workflow يدويًا في كل مرة. لا يزال بالإمكان تشغيله يدويًا من تبويب Actions عند الحاجة (مثلًا لإعادة التوقيع بعد تغيير الأسرار).
 
 ## البناء محليًا
 
