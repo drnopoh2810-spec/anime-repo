@@ -1,0 +1,1 @@
+- [Aniyomi extension scaffolding](aniyomi-extension-scaffold.md) — required abstract overrides for new extension modules; `:help` won't catch missing ones, only a real compile does.

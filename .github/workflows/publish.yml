@@ -1,0 +1,74 @@
+name: Publish extension repository
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-repo
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      CI: "true"
+      CI_CHUNK_SIZE: "1000"
+      CI_CHUNK_NUM: "0"
+      ALIAS: ${{ secrets.ALIAS }}
+      KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v6
+        with:
+          cache-provider: basic
+
+      - name: Validate signing secrets
+        shell: bash
+        run: |
+          test -n "$SIGNING_KEY" || (echo "Missing SIGNING_KEY" && exit 1)
+          test -n "$ALIAS" || (echo "Missing ALIAS" && exit 1)
+          test -n "$KEY_STORE_PASSWORD" || (echo "Missing KEY_STORE_PASSWORD" && exit 1)
+          test -n "$KEY_PASSWORD" || (echo "Missing KEY_PASSWORD" && exit 1)
+
+      - name: Restore signing key
+        shell: bash
+        run: printf '%s' "$SIGNING_KEY" | base64 --decode > signingkey.jks
+
+      - name: Build signed release APKs
+        run: chmod +x ./gradlew && ./gradlew -p src assembleRelease --no-daemon
+
+      - name: Collect APKs
+        shell: bash
+        run: |
+          mkdir -p "$HOME/apk-artifacts"
+          find src -type f -path '*/build/outputs/apk/release/*-release.apk' -exec cp {} "$HOME/apk-artifacts/" \;
+          test "$(find "$HOME/apk-artifacts" -name '*.apk' | wc -l)" -eq 14
+
+      - name: Create Aniyomi repository index
+        shell: bash
+        run: |
+          python .github/scripts/move-apks.py
+          INSPECTOR_URL="$(curl -fsSL https://api.github.com/repos/aniyomiorg/aniyomi-extensions-inspector/releases/latest | jq -r '.assets[0].browser_download_url')"
+          test -n "$INSPECTOR_URL" && test "$INSPECTOR_URL" != "null"
+          curl -fsSL "$INSPECTOR_URL" -o Inspector.jar
+          java -jar Inspector.jar repo/apk output.json tmp
+          python .github/scripts/create-repo.py
+          cp LICENSE repo/LICENSE
+
+      - name: Publish branch repo
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: repo
+          publish_dir: ./repo
+          force_orphan: true
+          commit_message: "Publish Arabic Aniyomi extensions"

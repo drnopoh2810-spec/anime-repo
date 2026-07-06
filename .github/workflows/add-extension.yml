@@ -1,0 +1,101 @@
+name: Add extension
+
+on:
+  workflow_dispatch:
+    inputs:
+      extension_name:
+        description: "اسم الموقع/الإضافة (مثال: My Site)"
+        required: true
+        type: string
+      extension_id:
+        description: "معرّف مختصر بالإنجليزية للمجلد والحزمة (اختياري، يُشتق من الاسم إن تُرك فارغًا)"
+        required: false
+        type: string
+      base_url:
+        description: "رابط الموقع الأساسي (مثال: https://example.com)"
+        required: true
+        type: string
+      category:
+        description: "نوع المحتوى"
+        required: true
+        type: choice
+        default: anime
+        options:
+          - anime
+          - movies
+      language:
+        description: "رمز اللغة"
+        required: false
+        default: ar
+        type: string
+      nsfw:
+        description: "هل الموقع للمحتوى للبالغين؟"
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  scaffold:
+    runs-on: ubuntu-latest
+    env:
+      EXT_NAME: ${{ inputs.extension_name }}
+      EXT_ID: ${{ inputs.extension_id }}
+      EXT_BASE_URL: ${{ inputs.base_url }}
+      EXT_CATEGORY: ${{ inputs.category }}
+      EXT_LANG: ${{ inputs.language }}
+      EXT_NSFW: ${{ inputs.nsfw }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Scaffold extension files
+        id: scaffold
+        run: python .github/scripts/scaffold_extension.py
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v6
+        with:
+          cache-provider: basic
+
+      - name: Compile the new extension module
+        env:
+          CI: "true"
+          CI_CHUNK_SIZE: "1000"
+          CI_CHUNK_NUM: "0"
+        run: |
+          chmod +x ./gradlew
+          ./gradlew -p src ":${{ inputs.language }}:${{ steps.scaffold.outputs.ext_id }}:compileDebugKotlin" --no-daemon
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "إضافة موقع جديد: ${{ inputs.extension_name }}"
+          branch: "add-extension/${{ inputs.extension_id || inputs.extension_name }}"
+          title: "إضافة موقع جديد: ${{ inputs.extension_name }}"
+          body: |
+            تم إنشاء هيكل إضافة جديدة تلقائيًا عبر GitHub Actions.
+
+            - **الاسم:** ${{ inputs.extension_name }}
+            - **الرابط الأساسي:** ${{ inputs.base_url }}
+            - **النوع:** ${{ inputs.category }}
+            - **اللغة:** ${{ inputs.language }}
+
+            هذا سقالة (scaffold) أولية فقط تحتوي على محددات (selectors) بعلامة `TODO`.
+            يجب على مطوّر مراجعة الشفرة وتحديث منطق الاستخراج (Popular/Episodes/Video/Search)
+            ليطابق بنية الموقع الفعلية قبل الدمج، ثم رفع `extVersionCode` عند كل تعديل لاحق.
+          labels: |
+            new-extension
+            needs-review
